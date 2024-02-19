@@ -1,0 +1,277 @@
+<!DOCTYPE HTML>
+<html lang="en" class="coal" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>2024/02/17 - Harms of &quot;Maintenance Mode&quot; - Vincent Desloover</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "coal";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('coal')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="../welcome.html">Welcome</a></li><li class="chapter-item "><a href="../resume.html">Resume</a></li><li class="chapter-item "><a href="../interests.html">Interests</a></li><li class="chapter-item "><a href="../contact.html">Contact</a></li><li class="chapter-item expanded "><a href="../blog.html">Blog</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../2024-02-17/2024-02-17.html" class="active">2024/02/17 - Harms of "Maintenance Mode"</a></li><li class="chapter-item "><a href="../2024-01-20/2024-01-20.html">2024/01/20 - Blog Kickoff</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Vincent Desloover</h1>
+
+                    <div class="right-buttons">
+                        <a href="https://github.com/VinceDeslo" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="20240217---harms-of-maintenance-mode"><a class="header" href="#20240217---harms-of-maintenance-mode">2024/02/17 - Harms of "Maintenance mode"</a></h1>
+<h2 id="context"><a class="header" href="#context">Context</a></h2>
+<p>While calmly watching a movie on a Wednesday evening, Pagerduty starts yelling at me through the cheap speakers in my phone.
+Time to strap in and figure out what is causing chaos!</p>
+<h2 id="what-was-happening"><a class="header" href="#what-was-happening">What was happening?</a></h2>
+<p>Effectively, a specific feature<sup class="footnote-reference"><a href="#note">1</a></sup> that my team had inherited was being flagged by a notable customer as lacking some security precautions for distribution of static assets.</p>
+<h2 id="whats-so-special"><a class="header" href="#whats-so-special">What's so special?</a></h2>
+<p>This just sounds like business as usual, right? Unfortunately, incident response lasted into the night longer than expected. The culprit being lack of knowledge.</p>
+<p>Lack of knowledge on my behalf? <code>Yes.</code><br />
+Lack of knowledge on everybody's behalf? <code>Saddly, also yes.</code></p>
+<p>See, the codebase where this feature was implemented had been placed in what you could call <code>maintenance mode</code>. My colleagues and I had inherited it as such. The only work ever being done on it were minor changes to get a vulnerability resolved or to keep packages updated (due to minimal bandwidth).</p>
+<p>The historical context was that this feature set was built by external contractors in a time before standards had yet emerged. The codebase never underwent the more thorough design process that our engineers are required to follow in the current day. As such, it was a total edge case that never saw any threat modelling.</p>
+<h2 id="side-effects-of-growth"><a class="header" href="#side-effects-of-growth">Side-effects of growth</a></h2>
+<p>This situation was a direct side-effect of the company rapidly evolving out of its startup phase. When initially built, the feature was a lead generating product that the business considered financially promising. It was a feature being pumped out of the feature factory to generate customer appetite. Rapid growth caused turnover and thus the original domain experts and their knowhow was lost.</p>
+<h2 id="key-difficulties"><a class="header" href="#key-difficulties">Key difficulties</a></h2>
+<p>Here are some things that were quite notable about the codebase.</p>
+<h3 id="1-it-was-built-rapidly-with-external-knowledge-and-a-foreign-stack"><a class="header" href="#1-it-was-built-rapidly-with-external-knowledge-and-a-foreign-stack">1. It was built rapidly with external knowledge and a foreign stack</a></h3>
+<p>The fact that this product had been contracted out meant that it did not abide to the patterns that the company was trying to set in place.
+Although very intelligently built, it did not fit the mold of how our engineers operated day to day. We were lacking the habit, familiarity, and intuition of working within its tech stack.</p>
+<h3 id="2-documentation-was-well-defined-yet-outdated"><a class="header" href="#2-documentation-was-well-defined-yet-outdated">2. Documentation was well defined yet outdated</a></h3>
+<p>There was a good amount of documentation in the form of READMEs and system diagrams. Unfortunately, these had never been updated. Functionalities of the codebase had changed and our only reference of the design had fallen out of date. An initial effort had been diligently executed, yet our own lazyness bit us in the long run.</p>
+<h3 id="3-it-lived-in-its-own-bubble-of-cloud-infrastructure"><a class="header" href="#3-it-lived-in-its-own-bubble-of-cloud-infrastructure">3. It lived in its own bubble of cloud infrastructure</a></h3>
+<p>This product had been built out in full isolation down to the infrastructure level. This meant that even access to a cloud console for exploration and debugging was only on a need to know basis. You can image that it is kinda hard to get infrastructure support during an incident when your SRE team doesn't have access either.</p>
+<h3 id="4-it-was-quite-well-designed-and-operated-reliably"><a class="header" href="#4-it-was-quite-well-designed-and-operated-reliably">4. It was quite well designed and operated reliably</a></h3>
+<p>This final item is the punchline. The colleague who came to my rescue had the most context on it and pointed out to me: <code>You really pulled the short straw, this thing hasn't caused an incident in over two years.</code></p>
+<p>Since the codebase operated as designed, it wasn't very noisy. This was a <strong>problem</strong>. It happily kept handling its traffic load and flew under the radar of any decision makers within the company. The teams consecutively owning it assumed that everything was fine since no support tickets or incidents were being triggered for it. The service remained in <code>maintenance mode</code>.</p>
+<p>If it had been prone to failure and an annoyance, its poor security design choices might have been signaled earlier.</p>
+<h2 id="outcomes"><a class="header" href="#outcomes">Outcomes</a></h2>
+<ul>
+<li>Mean time to incident resolution was slowed down considerably.</li>
+<li>Learning had to be done by spelunking on the spot.</li>
+<li>Solutions to adapt the initial product design had to be discovered under pressure.</li>
+<li>Cruft was finally made visible to stakeholders and prioritized!</li>
+</ul>
+<h2 id="a-couple-of-lessons-learned"><a class="header" href="#a-couple-of-lessons-learned">A couple of lessons learned</a></h2>
+<p>Although it was a pain to turn on my neurons outside of work hours, the experience was highly beneficial. Here are some thoughts:</p>
+<h3 id="security-debt-of-operational-solutions"><a class="header" href="#security-debt-of-operational-solutions">Security debt of operational solutions</a></h3>
+<p>The speed of headcount growth tends to be outpaced by technical cruft. Since there were never enough resources to attribute to refactoring the project to a more modern paradigm, it was left unattended. This was a case of the good old "Don't touch it if it isn't broken". Unfortunately, security debt can be a lot more subtle than general software implementation debt.</p>
+<h3 id="be-quick-to-deprecate"><a class="header" href="#be-quick-to-deprecate">Be quick to deprecate</a></h3>
+<p>This being more of a mental note to myself, if a feature doesn't provide considerable ARR or is under utilized. Ensure that you champion its destruction and burn it to the ground even if it is functional. New product initiatives will rarely constrain themselves to adapting with legacy implementations. Just build from the ground up according to current requirements.</p>
+<h3 id="a-service-catalog-is-not-enough"><a class="header" href="#a-service-catalog-is-not-enough">A service catalog is not enough</a></h3>
+<p>Another interesting point is the fact that this product's existence wasn't unknown to the team owning it. It lived in our software catalog and had up to date ownership. Even with all of this, risks still lurked that were inherent to its design. Although we kept track of it, we couldn't fully gauge the urgency of care it required. Never assume that your software is safe just because it hasn't been touched recently and already passed security scans.</p>
+<h3 id="prioritize-valuable-analytics"><a class="header" href="#prioritize-valuable-analytics">Prioritize valuable analytics</a></h3>
+<p>As owners of the codebase, we had very little visibility into the impact of the product. Metrics were minimal since it had been built quickly to respond to short term needs. How many customers used it? What was the ballpark of the generated profit? How much scale could it handle? All of these are questions which should be answered in a split second. Nobody could answer them at the time. Maybe tacking an OTel metric or two onto the key flows could have given a great deal of insight via a dashboard.</p>
+<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
+<p>Although messy, this was a fun time. I got to play around with some serverless pipelines and a couple of AWS services that I don't get to use in my day to day. Sometimes, even chaotic moments can bring in a breath of fresh air!</p>
+<div class="footnote-definition" id="note"><sup class="footnote-definition-label">1</sup>
+<p>Implementation details and any names of services/features were omitted for security and confidentiality reasons. The operational lessons feel more valuable to me in this case than the technical details.</p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../blog.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../2024-01-20/2024-01-20.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../blog.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../2024-01-20/2024-01-20.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid.min.js"></script>
+        <script src="../mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>
