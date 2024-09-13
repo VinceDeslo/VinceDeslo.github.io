@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>2024/01/20 - Blog Kickoff - Vincent Desloover</title>
+        <title>2024/09/12 - RustConf Chronicles - Vincent Desloover</title>
 
 
         <!-- Custom HTML head -->
@@ -87,7 +87,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item "><a href="../welcome.html">Welcome</a></li><li class="chapter-item "><a href="../resume.html">Resume</a></li><li class="chapter-item "><a href="../interests.html">Interests</a></li><li class="chapter-item "><a href="../contact.html">Contact</a></li><li class="chapter-item expanded "><a href="../blog.html">Blog</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../2024-09-12/2024-09-12.html">2024/09/12 - RustConf Chronicles</a></li><li class="chapter-item "><a href="../2024-05-18/2024-05-18.html">2024/05/18 - DevEx Brain Dump 1</a></li><li class="chapter-item "><a href="../2024-02-17/2024-02-17.html">2024/02/17 - Harms of "Maintenance Mode"</a></li><li class="chapter-item expanded "><a href="../2024-01-20/2024-01-20.html" class="active">2024/01/20 - Blog Kickoff</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item "><a href="../welcome.html">Welcome</a></li><li class="chapter-item "><a href="../resume.html">Resume</a></li><li class="chapter-item "><a href="../interests.html">Interests</a></li><li class="chapter-item "><a href="../contact.html">Contact</a></li><li class="chapter-item expanded "><a href="../blog.html">Blog</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../2024-09-12/2024-09-12.html" class="active">2024/09/12 - RustConf Chronicles</a></li><li class="chapter-item "><a href="../2024-05-18/2024-05-18.html">2024/05/18 - DevEx Brain Dump 1</a></li><li class="chapter-item "><a href="../2024-02-17/2024-02-17.html">2024/02/17 - Harms of "Maintenance Mode"</a></li><li class="chapter-item "><a href="../2024-01-20/2024-01-20.html">2024/01/20 - Blog Kickoff</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -172,34 +172,86 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="20240120---blog-kickoff"><a class="header" href="#20240120---blog-kickoff">2024/01/20 - Blog Kickoff</a></h1>
-<h2 id="what-is-this--"><a class="header" href="#what-is-this--">What is this ? <a href="#">⭡</a></a></h2>
-<p>The document you are currently reading is an attempt I am making to archive some of my thoughts during my professional career. You may call it a blog or a progress log. I will be considering it a semi-organized mess.</p>
-<h2 id="what-are-we-to-expect--"><a class="header" href="#what-are-we-to-expect--">What are we to expect ? <a href="#">⭡</a></a></h2>
-<p>This site should help me remember some interesting tidbits while working in tech. These may be technical discoveries or simply internal monologue that I would like to preserve.</p>
-<p>Subjects may be relevant to the following domains (hopefully?):</p>
+                        <h1 id="20240912---rustconf-chronicles"><a class="header" href="#20240912---rustconf-chronicles">2024/09/12 - RustConf Chronicles</a></h1>
+<h2 id="context"><a class="header" href="#context">Context</a></h2>
+<h2 id="day-1"><a class="header" href="#day-1">Day 1</a></h2>
+<h3 id="aeva-black"><a class="header" href="#aeva-black">Aeva Black</a></h3>
 <ul>
-<li>Backend software</li>
-<li>Event-driven systems</li>
-<li>CLIs and SDKs</li>
-<li>Architecture</li>
-<li>DevSecOps</li>
-<li>Data pipelines</li>
-<li>Cloud infrastructure</li>
+<li>Interesting to hear the emphasis on SBOM</li>
 </ul>
-<h2 id="any-particular-structure--"><a class="header" href="#any-particular-structure--">Any particular structure ? <a href="#">⭡</a></a></h2>
-<p>My hope is for this to be a long term project. I do not want to introduce strict structure for this reason! Every entry should nonetheless contain an initial statement to get the ball rolling.</p>
-<h2 id="why-this-look-and-feel--"><a class="header" href="#why-this-look-and-feel--">Why this look and feel ? <a href="#">⭡</a></a></h2>
-<p>The current iteration of this blog is built on <a href="https://rust-lang.github.io/mdBook/">mdbook</a>, which is the same documentation tool used for the Rust book. I messed around with <a href="https://gohugo.io/">Hugo</a> a bit, yet didn't find it to be barebones enough for my needs. The simplicity and ease of maintenance provided by this crate should help me update and redact posts without too much hassle!</p>
+<h3 id="transmute"><a class="header" href="#transmute">Transmute</a></h3>
+<ul>
+<li>Graph visualizations of Type transmutation paths</li>
+</ul>
+<h3 id="rustify-your-api"><a class="header" href="#rustify-your-api">Rustify your API</a></h3>
+<ul>
+<li>Building types as library maintainers and sensible defaults</li>
+</ul>
+<h3 id="live-coding-with-bevy"><a class="header" href="#live-coding-with-bevy">Live coding with Bevy</a></h3>
+<ul>
+<li>Systems, Entity Components, snippets through shell aliases</li>
+</ul>
+<h3 id="actors-and-factories"><a class="header" href="#actors-and-factories">Actors and factories</a></h3>
+<ul>
+<li>Overload protection for unbound queues in distributes systems</li>
+</ul>
+<h3 id="cargo-mutants"><a class="header" href="#cargo-mutants">Cargo mutants</a></h3>
+<ul>
+<li>Building cargo tooling to look into. Synthetic bug injection is cool.</li>
+</ul>
+<h3 id="rust-project"><a class="header" href="#rust-project">Rust project</a></h3>
+<ul>
+<li>Breakdown of domains in council was interesting (tooling, lang, compiler, docs, etc.)</li>
+</ul>
+<h2 id="day-2"><a class="header" href="#day-2">Day 2</a></h2>
+<h3 id="rust-for-linux"><a class="header" href="#rust-for-linux">Rust for Linux</a></h3>
+<ul>
+<li>safe wrappers around unsafe IO and tests that validate documentation as well.</li>
+</ul>
+<h3 id="neotron-on-pi-pico"><a class="header" href="#neotron-on-pi-pico">Neotron on Pi Pico</a></h3>
+<ul>
+<li>Fun music, got fooled.</li>
+</ul>
+<h3 id="compiler-driven-development"><a class="header" href="#compiler-driven-development">Compiler driven development</a></h3>
+<ul>
+<li>Examples at the end of bounding your functionality to validate at compile time.</li>
+</ul>
+<h3 id="cargo-build-deep-dive"><a class="header" href="#cargo-build-deep-dive">Cargo build deep dive</a></h3>
+<ul>
+<li>Viewing dependency tree builds with <code>cargo build -v</code></li>
+</ul>
+<h3 id="tracing-crate"><a class="header" href="#tracing-crate">Tracing crate</a></h3>
+<ul>
+<li>Finer grained logging and tracking/modifying callsite interest at runtime.</li>
+</ul>
+<h3 id="web-and-webassembly"><a class="header" href="#web-and-webassembly">Web and webassembly</a></h3>
+<ul>
+<li>History of the web, Fun seeing leptos in action with examples compared to jQuery.</li>
+</ul>
+<h3 id="unsafe-world"><a class="header" href="#unsafe-world">Unsafe world</a></h3>
+<ul>
+<li>Definition, Enforcement, X -&gt; Modelling your domain space via typing.</li>
+</ul>
+<h3 id="rust-project-roadmap"><a class="header" href="#rust-project-roadmap">Rust project Roadmap</a></h3>
+<ul>
+<li>Emphasis on simplifying, Rust may become more approachable.</li>
+</ul>
+<h2 id="final-thoughts"><a class="header" href="#final-thoughts">Final thoughts</a></h2>
+<h3 id="hackathon"><a class="header" href="#hackathon">Hackathon</a></h3>
+<h3 id="new-acquaintances"><a class="header" href="#new-acquaintances">New acquaintances</a></h3>
+<h3 id="valuable-knowledge-sharing"><a class="header" href="#valuable-knowledge-sharing">Valuable knowledge sharing</a></h3>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../2024-02-17/2024-02-17.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../blog.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
+                            <a rel="next prefetch" href="../2024-05-18/2024-05-18.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -207,10 +259,13 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../2024-02-17/2024-02-17.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../blog.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
+                    <a rel="next prefetch" href="../2024-05-18/2024-05-18.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
