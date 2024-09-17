@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>2024/09/13 - RustConf Chronicles 3 - Vincent Desloover</title>
+        <title>2024/09/11 - RustConf Chronicles 1 - Vincent Desloover</title>
 
 
         <!-- Custom HTML head -->
@@ -87,7 +87,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item "><a href="../welcome.html">Welcome</a></li><li class="chapter-item "><a href="../resume.html">Resume</a></li><li class="chapter-item "><a href="../interests.html">Interests</a></li><li class="chapter-item "><a href="../contact.html">Contact</a></li><li class="chapter-item expanded "><a href="../blog.html">Blog</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../2024-09-13/2024-09-13.html" class="active">2024/09/13 - RustConf Chronicles 3</a></li><li class="chapter-item "><a href="../2024-09-12/2024-09-12.html">2024/09/12 - RustConf Chronicles 2</a></li><li class="chapter-item "><a href="../2024-09-11/2024-09-11.html">2024/09/11 - RustConf Chronicles 1</a></li><li class="chapter-item "><a href="../2024-05-18/2024-05-18.html">2024/05/18 - DevEx Brain Dump 1</a></li><li class="chapter-item "><a href="../2024-02-17/2024-02-17.html">2024/02/17 - Harms of "Maintenance Mode"</a></li><li class="chapter-item "><a href="../2024-01-20/2024-01-20.html">2024/01/20 - Blog Kickoff</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item "><a href="../welcome.html">Welcome</a></li><li class="chapter-item "><a href="../resume.html">Resume</a></li><li class="chapter-item "><a href="../interests.html">Interests</a></li><li class="chapter-item "><a href="../contact.html">Contact</a></li><li class="chapter-item expanded "><a href="../blog.html">Blog</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../2024-09-13/2024-09-13.html">2024/09/13 - RustConf Chronicles 3</a></li><li class="chapter-item "><a href="../2024-09-12/2024-09-12.html">2024/09/12 - RustConf Chronicles 2</a></li><li class="chapter-item expanded "><a href="../2024-09-11/2024-09-11.html" class="active">2024/09/11 - RustConf Chronicles 1</a></li><li class="chapter-item "><a href="../2024-05-18/2024-05-18.html">2024/05/18 - DevEx Brain Dump 1</a></li><li class="chapter-item "><a href="../2024-02-17/2024-02-17.html">2024/02/17 - Harms of "Maintenance Mode"</a></li><li class="chapter-item "><a href="../2024-01-20/2024-01-20.html">2024/01/20 - Blog Kickoff</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -172,43 +172,35 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="20240913---rustconf-chronicles-day-3"><a class="header" href="#20240913---rustconf-chronicles-day-3">2024/09/13 - RustConf Chronicles Day 3</a></h1>
+                        <h1 id="20240912---rustconf-chronicles-day-1"><a class="header" href="#20240912---rustconf-chronicles-day-1">2024/09/12 - RustConf Chronicles Day 1</a></h1>
 <h2 id="context"><a class="header" href="#context">Context</a></h2>
-<ul>
-<li>Describe the invite to the Hackathon</li>
-</ul>
-<h2 id="pairing-with-marshall"><a class="header" href="#pairing-with-marshall">Pairing with Marshall</a></h2>
-<ul>
-<li>Amazement at the speed of iteration to put a basic implementation together.</li>
-</ul>
-<h2 id="an-event-loop-commands-context-etc-kirill-bulatov"><a class="header" href="#an-event-loop-commands-context-etc-kirill-bulatov">An event loop, commands, context, etc. (Kirill Bulatov)</a></h2>
-<ul>
-<li>Pairing session looking through Zed's source code:
-<ul>
-<li>its commands, its tasks, its executor, events and context, etc.</li>
-</ul>
-</li>
-</ul>
-<h2 id="chatting-with-danilo-leal"><a class="header" href="#chatting-with-danilo-leal">Chatting with Danilo Leal</a></h2>
-<ul>
-<li>So many topics, user adoption, past experiences,</li>
-</ul>
-<h2 id="learning-about-some-legends-in-the-room"><a class="header" href="#learning-about-some-legends-in-the-room">Learning about some legends in the room</a></h2>
-<ul>
-<li>Founders of Atom</li>
-<li>The creator of the Roc programming language</li>
-<li>Thorsten Ball (author of Writing An Interpreter in Go, Writing A Compiler in Go)</li>
-</ul>
+<p>Following a couple months of non-stop feature work at my job, I was starting to feel like I needed exposure to something a bit different from the day to day in order to re-kindle my passion for programming. Luckily, RustConf was coming to my city for a couple of days and I couldn't say no. Here is a rundown of my experience!</p>
+<h3 id="a-security-centric-opening"><a class="header" href="#a-security-centric-opening">A security centric opening</a></h3>
+<p>The opening keynote of the conference was given by Aeva Black, a section chief at the Cybersecurity and Infrastructure Security Agency (CISA). The presentation had a strong focus on the importance of securing open-source software supply chains by design (hence it's relevance in a Rust conference). Amongst a rundown of how CISA functions and what upcoming initiatives are being prioritized, I was pleasantly surprised to see a couple of slides bringing up the importance of SBOMs going forward in supply chain security. Got to learn that there is some community initiative to implement a Rust <a href="https://github.com/rust-lang/rfcs/pull/3553">RFC</a> to automatically publish SBOMs as compilation artifacts.</p>
+<h3 id="safe-type-transmutation"><a class="header" href="#safe-type-transmutation">Safe type transmutation</a></h3>
+<p>On to the first technical talk of the conference! This one entitled "Safety Goggles for Alchemists" was given by Jack Wrenn and the subject was safe transmutation between Rust types. It was a really interesting session considering that my knowledge for Rust traits and unsafe usage is quite basic. Jack illustrated how the <a href="https://doc.rust-lang.org/beta/std/mem/trait.TransmuteFrom.html">TransmuteFrom</a> trait was implemented and provided some awesome graph visualizations of type compatibility with finite automata. Additionally, a use case of UDP packet parsing helped to truly understand what makes this trait useful.</p>
+<h3 id="a-bit-of-api-design"><a class="header" href="#a-bit-of-api-design">A bit of API design</a></h3>
+<p>After coming down from the mezzanine of the venue, I sat in on a talk given by Isabel Atkinson from MongoDB. "Rustify your API" was a fun live rundown of building a <code>bulkWrite</code> database API. Although the API design lessons were a bit more obvious to me, there were some really interesting tidbits about making option configuration very simple with a builder pattern and Rust types. It was also a great perspective on using generics as a library maintainer in order to only expose the necessary types to your client users.</p>
+<h3 id="game-dev-primers"><a class="header" href="#game-dev-primers">Game dev primers</a></h3>
+<p>Following our lunch break, there was a bit more of a lighthearted talk given by Nathan Stocks from GitHub. His goal was to work us through building a Bevy game in 30 minutes. By far this was one of the more humorous talks I attended. All while cracking jokes at every turn, he managed to demonstrate the usage of Bevy plugins, entity components, system automation, event loop control, and much more. I found his presentation methodology super interesting, TLDR; he had templated some Rust code and used a bash script to pipe the code to his clipboard on the fly. This made it super swift to follow without too much overhead of watching somebody manually type out their work.</p>
+<h3 id="actors-and-factories"><a class="header" href="#actors-and-factories">Actors and factories</a></h3>
+<p>This talk was the one I was looking forward to the most in this first day of the conference. Entitled "Actors and factories in Rust", it was given by Sean Lawlor and Pedro Rittner from Meta. In the talk, they broke down the difficulties encountered with their existing IDL and RPC framework built on Apache Thrift. They followed this up with an explanation of how they built <a href="https://github.com/slawlor/ractor">ractor</a>. Their rundown of how they built a server shim to ensure better isolation, concurrency, queue control, request draining, and overload protection for requests was really well vulgarized. This left me wanting to build something with their framework the second their talk ended.</p>
+<h3 id="complexity-behind-transport-maps"><a class="header" href="#complexity-behind-transport-maps">Complexity behind transport maps</a></h3>
+<p>The following afternoon talk was being given by Kyler Chin, a student from UC Irvine. His talk "How we built a Rust-y real-time public transport map" was a deep dive into the complexity of integrating with multiple transport providers across continents and geographies. Although a fast pace presentation, it was great to see his take on their system design with a graph centric approach. Furthermore, the whole thing running off of a cluster of 9 year old Intel NUCs was an awesome reminder that we often times consume more resources than necessary.</p>
+<h3 id="here-be-mutants"><a class="header" href="#here-be-mutants">Here be mutants!</a></h3>
+<p>This last technical talk that I attended was an unexpected discovery, Martin Pool from Stripe gave us a great overview of how better tooling could help expose bugs in our packages. By demonstrating his cargo extension <a href="https://github.com/sourcefrog/cargo-mutants">cargo mutants</a> he showed us that testing assumptions and bugs can be found by synthetically replacing code at testing time. We tend to write too many tests based on happy paths, and this augmented tooling seemed quite practical for catching edge cases that could occur in the wild.</p>
+<h3 id="rust-project-enlightment"><a class="header" href="#rust-project-enlightment">Rust project enlightment</a></h3>
+<p>Finally, the day was concluded with a presentation from Jack Huey and James Munns from the Rust Project Leadership Council. They gave us outsiders a detailed runthrough of how the Rust Project operates. We got a glimpse into the high level team structures (Lang, Compiler, Devtools, Infra, etc.) as well as how these are broken down into sub-teams. The most interesting part though was an explanation of how initiatives are tracked and how these teams communicate. They went over the whole process including their discussion platforms, their design process with RFCs/AFCs, and the bots used to keep everything tidy.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../blog.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../2024-09-12/2024-09-12.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../2024-09-12/2024-09-12.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../2024-05-18/2024-05-18.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -218,11 +210,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../blog.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../2024-09-12/2024-09-12.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../2024-09-12/2024-09-12.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../2024-05-18/2024-05-18.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
