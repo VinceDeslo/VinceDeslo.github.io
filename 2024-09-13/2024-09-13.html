@@ -173,32 +173,51 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="20240913---rustconf-chronicles-day-3"><a class="header" href="#20240913---rustconf-chronicles-day-3">2024/09/13 - RustConf Chronicles Day 3</a></h1>
+<blockquote>
+<p>This is the third post of this mini-series, check out <a href="../2024-09-11/2024-09-11.html">Day 1</a> and <a href="../2024-09-12/2024-09-12.html">Day 2</a> if you haven't already.</p>
+</blockquote>
 <h2 id="context"><a class="header" href="#context">Context</a></h2>
+<p>Although RustConf was technically over for me since I cheaped out on purchasing the extra slot dedicated to the Unconference, I was lucky to be invited to a Hackathon in a separate coworking space with the lovely folks from <a href="https://zed.dev/">Zed</a>. I had never joined such a hack day event outside of my workplace and this one was no joke.</p>
+<h2 id="pairing-and-trying-to-keep-up"><a class="header" href="#pairing-and-trying-to-keep-up">Pairing and trying to keep up</a></h2>
+<p>Show up, sit down, look around. That was my initial thought as I entered the Hackathon space. Amongst the 15-20 people gathered there, somebody split out from one of the tables and came to greet me in a flash before I could even pull out my laptop. This person was Marshall Bowers (<a href="https://github.com/maxdeviant">maxdeviant</a>) and he promptly proposed to pair on some hacking together.</p>
+<p>As we settled down, I explained to him that my mission was to get some insight on how one would build an extension for the Zed IDE. Luckily enough, he had contributed a considerable portion of work to its Extension API. He proceeded to blow me away with a quick collaboration session helping me integrate an LSP into the editor locally. The flow looked a little something like this:</p>
+<ol>
+<li>Fetch Metadata from JSON payload hosted alongside the Snyk LSP.</li>
+<li>Format a download URL to obtain a Snyk LSP binary.</li>
+<li>Store the downloaded binary on the system.</li>
+<li>Expose that binary to Zed alongside any required environment variables.</li>
+</ol>
+<p>We managed to get the LSP recognized by Zed and unfortunately ran into OAuth issues with the platform that the LSP tries to connect with. Although this implementation was buggy, we had something! Marshall also courteously took the time to give me a rundown of a couple other things:</p>
 <ul>
-<li>Describe the invite to the Hackathon</li>
+<li>How to navigate the local build cycle like for extensions.</li>
+<li>How Zed sandboxes interaction with the system via WASM and wasmtime (eg. <a href="https://github.com/zed-industries/zed/blob/main/crates/extension/src/wasm_host.rs">wasm_host.rs</a>).</li>
+<li>How Zed models a Worktree and other top level primitives.</li>
 </ul>
-<h2 id="pairing-with-marshall"><a class="header" href="#pairing-with-marshall">Pairing with Marshall</a></h2>
+<p>All and all, this was a blast. It also made me realize that I need to write way more Rust to get one step closer to how proficient he was.</p>
+<h2 id="an-event-loop-commands-context-etc"><a class="header" href="#an-event-loop-commands-context-etc">An event loop, commands, context, etc.</a></h2>
+<p>After Marshall moved on to greener pastures, I grabbed some food and was joined at my table by Kirill Bulatov. Shortly after finishing some work on his end, he proposed to give me a rundown of how Zed does things. This ended up being incredibly insightful.</p>
+<p>He basically showed me that Zed was built atop its own asynchronous primitives. Tasks, Futures, Executors/Dispatchers, blocking, timing, scheduling. These were all concepts he interwove in front of me and that made a lot more sense once I had looked at the <a href="https://github.com/zed-industries/zed/blob/main/crates/gpui/src/executor.rs">executor.rs</a> file after the fact. His mental model of the system seemed quite strong.</p>
+<p>He also took some time to illustrate how the editor leverages various Actions, Events, Contexts, Observers, and Elements. The main <a href="https://github.com/zed-industries/zed/blob/main/crates/gpui/src/app.rs">app.rs</a> file of their <code>gpui</code> crate illustrates this very well. It was really interesting to see the editor through the eyes of somebody with deeper knowledge.</p>
+<h2 id="ux-dx-career-choices-and-everything-in-between"><a class="header" href="#ux-dx-career-choices-and-everything-in-between">UX, DX, career choices, and everything in between</a></h2>
+<p>Although a bit mindblown by the last chat with Kirill, I started working again on my OAuth issue. Shortly after this, somebody else joined the table. What started off as a basic "Hey, how's it going?" ended up becoming an hour long chat with Danilo Leal. For context, Danilo is one of the few designers who is a part of the 16 person team that is Zed. Coming from <a href="https://mui.com/material-ui/">Material-UI</a>, he shared with me his learnings about joining such a driven team of individuals focused on a systems language.</p>
+<p>We joked around but ended up covering a bunch of interesting subjects. Such as:</p>
 <ul>
-<li>Amazement at the speed of iteration to put a basic implementation together.</li>
+<li>How it feels to onboard into a tight knit team.</li>
+<li>What aspects and capabilities of an IDE pull in adoption.</li>
+<li>How ecosystems are built around tooling.</li>
+<li>What friction points are most painful.</li>
 </ul>
-<h2 id="an-event-loop-commands-context-etc-kirill-bulatov"><a class="header" href="#an-event-loop-commands-context-etc-kirill-bulatov">An event loop, commands, context, etc. (Kirill Bulatov)</a></h2>
-<ul>
-<li>Pairing session looking through Zed's source code:
-<ul>
-<li>its commands, its tasks, its executor, events and context, etc.</li>
-</ul>
-</li>
-</ul>
-<h2 id="chatting-with-danilo-leal"><a class="header" href="#chatting-with-danilo-leal">Chatting with Danilo Leal</a></h2>
-<ul>
-<li>So many topics, user adoption, past experiences,</li>
-</ul>
+<p>This conversation felt like I was collaborating with him to build a better future for Zed even though I was contributing absolutely nothing aside from dialogue. This made me realize that everybody I had talked to at the hackathon had a really strong passion for what they were doing, Danilo confirmed this with a smile.</p>
 <h2 id="learning-about-some-legends-in-the-room"><a class="header" href="#learning-about-some-legends-in-the-room">Learning about some legends in the room</a></h2>
-<ul>
-<li>Founders of Atom</li>
-<li>The creator of the Roc programming language</li>
-<li>Thorsten Ball (author of Writing An Interpreter in Go, Writing A Compiler in Go)</li>
-</ul>
+<p>All throughout these little conversations and sessions, I was given glimpses into other folks that were in the room.
+I didn't realize this initially, but the person who came to ask Marshall some questions during our pairing was Nathan Sobo, one of the founders of Atom.
+The man talking at the table behind us, was Thorsten Ball, author of "Writing An Interpreter In Go".
+The individual who just walked by, this was Richard Feldman, the creator of the functional programming language <a href="https://www.roc-lang.org/">Roc</a></p>
+<p>I was amazed to realize that all these folks who I had only ever heard on podcasts, were a couple of meters away. It was impressive to see such a group of strong minds all focused and hacking away on a product they care about.</p>
+<h2 id="closing-thoughts"><a class="header" href="#closing-thoughts">Closing thoughts</a></h2>
+<p>Here ends my experience with RustConf in 2024. Although I met some really cool people at the Zed Hackathon, I also got the chance to interact with a diverse set of folks during the conferences. From chats about automated drone lawnmowers with spinning blades of death to a 15 minute masterclass about dev shells with one of the maintainers from <a href="https://flox.dev/">Flox</a>, it was all incredibly enriching.</p>
+<p>Hence, my parting words for this mini-series of posts:</p>
+<p><code>Get out there, meet some folks, learn a thing!</code></p>
 
                     </main>
 

@@ -189,15 +189,9 @@
 <h3 id="wait-frontend-really"><a class="header" href="#wait-frontend-really">Wait frontend, really?</a></h3>
 <p>For anybody not familiar with Chris Biscardi, go check out his Youtube channel. Chris took us on a journey through history of the web in his talk "Web sites, web apps, web assembly". He started off from HTML/CSS and ran us chronologically through bundlers, runtimes, and meta frameworks. Although I'm less interested by this space, his later code examples featuring <a href="https://github.com/leptos-rs/leptos">Leptos</a> and WebAssembly made a real nice parallel with the React side of things that I am familiar with (with a bit of added syntactic sugar and typing).</p>
 <h3 id="types-types-everywhere"><a class="header" href="#types-types-everywhere">Types, types everywhere</a></h3>
-<p>As everybody returned to the main track of the conference, I was truly surprised by the following talk, I had not expected to enjoy it so much. Joshua Liebow-Feeser blew my mind with his presentation "Safety in an unsafe world". The talk was focused on lessons learned from building the networking stack <a href="https://fuchsia.dev/fuchsia-src/contribute/roadmap/2021/netstack3">Netstack3</a> for Googles FuschiaOS. Joshua ran us through his framework for safety composed of Definition, Enforcement, and Consumption steps. Armed with a bunch of explicit code examples, he showed us how we could use typing to model out thread safety and deadlock prevention. This was a great example of modelling your domain space to make undesireable states impossible. He also added in various quotes which I will be adding to my arsenal1</p>
-<h3 id="rust-project-roadmap"><a class="header" href="#rust-project-roadmap">Rust project Roadmap</a></h3>
-<ul>
-<li>Emphasis on simplifying, Rust may become more approachable.</li>
-</ul>
-<h2 id="final-thoughts"><a class="header" href="#final-thoughts">Final thoughts</a></h2>
-<ul>
-<li>Knowledge sharing and acquantainces</li>
-</ul>
+<p>As everybody returned to the main track of the conference, I was truly surprised by the following talk, I had not expected to enjoy it so much. Joshua Liebow-Feeser blew my mind with his presentation "Safety in an unsafe world". The talk was focused on lessons learned from building the networking stack <a href="https://fuchsia.dev/fuchsia-src/contribute/roadmap/2021/netstack3">Netstack3</a> for Googles FuschiaOS. Joshua ran us through his framework for safety composed of Definition, Enforcement, and Consumption steps. Armed with a bunch of explicit code examples, he showed us how we could use typing to model out thread safety and deadlock prevention. This was a great example of modelling your domain space to make undesireable states impossible. He also added in various quotes which I will be adding to my arsenal.</p>
+<h3 id="rust-project-roadmap"><a class="header" href="#rust-project-roadmap">Rust project roadmap</a></h3>
+<p>To cap off the final day of talks, Nicholas Matsakis presented the new format of <a href="https://rust-lang.github.io/rust-project-goals/index.html">Rust Project Goals</a>. He highlighted some of the larger goals for the language, such as: the coming of a 2024 Rust Edition, the feature parity between asynchronous and synchronous Rust, and the effort to get the Linux kernel on stable Rust. The best news to my ears involved that second goal. It is super exciting to know that we will soon have async closures! This is something I have felt the pain of personally and I wouldn't mind a bit of quality of life improvements on that front. In the end, it was also nice to see that there was a drive to make the language simpler and more approachable (maybe some influence from Go here?).</p>
 
                     </main>
 
