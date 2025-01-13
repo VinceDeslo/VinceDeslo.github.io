@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>2024/09/11 - RustConf Chronicles 1 - Slowtime Personas</title>
+        <title>2025/01/12 - Velocity &amp; Allocation - Slowtime Personas</title>
 
 
         <!-- Custom HTML head -->
@@ -151,35 +151,140 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="20240912---rustconf-chronicles-day-1"><a class="header" href="#20240912---rustconf-chronicles-day-1">2024/09/12 - RustConf Chronicles Day 1</a></h1>
-<h2 id="context"><a class="header" href="#context">Context</a></h2>
-<p>Following a couple months of non-stop feature work at my job, I was starting to feel like I needed exposure to something a bit different from the day to day in order to re-kindle my passion for programming. Luckily, RustConf was coming to my city for a couple of days and I couldn't say no. Here is a rundown of my experience!</p>
-<h3 id="a-security-centric-opening"><a class="header" href="#a-security-centric-opening">A security centric opening</a></h3>
-<p>The opening keynote of the conference was given by Aeva Black, a section chief at the Cybersecurity and Infrastructure Security Agency (CISA). The presentation had a strong focus on the importance of securing open-source software supply chains by design (hence it's relevance in a Rust conference). Amongst a rundown of how CISA functions and what upcoming initiatives are being prioritized, I was pleasantly surprised to see a couple of slides bringing up the importance of SBOMs going forward in supply chain security. Got to learn that there is some community initiative to implement a Rust <a href="https://github.com/rust-lang/rfcs/pull/3553">RFC</a> to automatically publish SBOMs as compilation artifacts.</p>
-<h3 id="safe-type-transmutation"><a class="header" href="#safe-type-transmutation">Safe type transmutation</a></h3>
-<p>On to the first technical talk of the conference! This one entitled "Safety Goggles for Alchemists" was given by Jack Wrenn and the subject was safe transmutation between Rust types. It was a really interesting session considering that my knowledge for Rust traits and unsafe usage is quite basic. Jack illustrated how the <a href="https://doc.rust-lang.org/beta/std/mem/trait.TransmuteFrom.html">TransmuteFrom</a> trait was implemented and provided some awesome graph visualizations of type compatibility with finite automata. Additionally, a use case of UDP packet parsing helped to truly understand what makes this trait useful.</p>
-<h3 id="a-bit-of-api-design"><a class="header" href="#a-bit-of-api-design">A bit of API design</a></h3>
-<p>After coming down from the mezzanine of the venue, I sat in on a talk given by Isabel Atkinson from MongoDB. "Rustify your API" was a fun live rundown of building a <code>bulkWrite</code> database API. Although the API design lessons were a bit more obvious to me, there were some really interesting tidbits about making option configuration very simple with a builder pattern and Rust types. It was also a great perspective on using generics as a library maintainer in order to only expose the necessary types to your client users.</p>
-<h3 id="game-dev-primers"><a class="header" href="#game-dev-primers">Game dev primers</a></h3>
-<p>Following our lunch break, there was a bit more of a lighthearted talk given by Nathan Stocks from GitHub. His goal was to work us through building a Bevy game in 30 minutes. By far this was one of the more humorous talks I attended. All while cracking jokes at every turn, he managed to demonstrate the usage of Bevy plugins, entity components, system automation, event loop control, and much more. I found his presentation methodology super interesting, TLDR; he had templated some Rust code and used a bash script to pipe the code to his clipboard on the fly. This made it super swift to follow without too much overhead of watching somebody manually type out their work.</p>
-<h3 id="actors-and-factories"><a class="header" href="#actors-and-factories">Actors and factories</a></h3>
-<p>This talk was the one I was looking forward to the most in this first day of the conference. Entitled "Actors and factories in Rust", it was given by Sean Lawlor and Pedro Rittner from Meta. In the talk, they broke down the difficulties encountered with their existing IDL and RPC framework built on Apache Thrift. They followed this up with an explanation of how they built <a href="https://github.com/slawlor/ractor">ractor</a>. Their rundown of how they built a server shim to ensure better isolation, concurrency, queue control, request draining, and overload protection for requests was really well vulgarized. This left me wanting to build something with their framework the second their talk ended.</p>
-<h3 id="complexity-behind-transport-maps"><a class="header" href="#complexity-behind-transport-maps">Complexity behind transport maps</a></h3>
-<p>The following afternoon talk was being given by Kyler Chin, a student from UC Irvine. His talk "How we built a Rust-y real-time public transport map" was a deep dive into the complexity of integrating with multiple transport providers across continents and geographies. Although a fast pace presentation, it was great to see his take on their system design with a graph centric approach. Furthermore, the whole thing running off of a cluster of 9 year old Intel NUCs was an awesome reminder that we often times consume more resources than necessary.</p>
-<h3 id="here-be-mutants"><a class="header" href="#here-be-mutants">Here be mutants!</a></h3>
-<p>This last technical talk that I attended was an unexpected discovery, Martin Pool from Stripe gave us a great overview of how better tooling could help expose bugs in our packages. By demonstrating his cargo extension <a href="https://github.com/sourcefrog/cargo-mutants">cargo mutants</a> he showed us that testing assumptions and bugs can be found by synthetically replacing code at testing time. We tend to write too many tests based on happy paths, and this augmented tooling seemed quite practical for catching edge cases that could occur in the wild.</p>
-<h3 id="rust-project-enlightment"><a class="header" href="#rust-project-enlightment">Rust project enlightment</a></h3>
-<p>Finally, the day was concluded with a presentation from Jack Huey and James Munns from the Rust Project Leadership Council. They gave us outsiders a detailed runthrough of how the Rust Project operates. We got a glimpse into the high level team structures (Lang, Compiler, Devtools, Infra, etc.) as well as how these are broken down into sub-teams. The most interesting part though was an explanation of how initiatives are tracked and how these teams communicate. They went over the whole process including their discussion platforms, their design process with RFCs/AFCs, and the bots used to keep everything tidy.</p>
+                        <h1 id="20250112---velocity--allocation"><a class="header" href="#20250112---velocity--allocation">2025/01/12 - Velocity &amp; Allocation</a></h1>
+<h2 id="tldr"><a class="header" href="#tldr">TLDR;</a></h2>
+<p>Getting people aligned -&gt; Never easy.</p>
+<h2 id="what-do-i-mean"><a class="header" href="#what-do-i-mean">What do I mean?</a></h2>
+<p>As self-explanatory as the above sentence is, it shouldn't be taken for granted.
+This little tale stems from a bit of miscommunication I recently experienced on a first week back following the New Year.
+But first lets define the title:</p>
+<ul>
+<li><code>Velocity</code>: Meaning developer velocity or the ability to accomplish meaningful work.</li>
+<li><code>Allocation</code>: The way in which we assign people to projects or work streams.</li>
+</ul>
+<h2 id="so-what-was-the-problem"><a class="header" href="#so-what-was-the-problem">So what was the problem?</a></h2>
+<p>For the past ten months I have been working on a specific new domain defined in my company.
+This gave me the chance to greenfield a fresh service, integrate new flows within our existing platform, and play with some fancy user facing DX ideas.
+All good fun!</p>
+<p>While attempting to get acquainted with a new set of requirements and their subsequent features for the start of 2025,
+I started envisioning what needed to change in the wiring we already had between the above mentionned service, new event-streams, and data sources/sinks.</p>
+<p>Up to now, all good.</p>
+<p>In an attempt to derisk the upcoming work, I mentionned in a thread that we may have a risk due to prior coupling on legacy flows.
+This is when a stakeholder intervened and mentioned that this was not the case.</p>
+<p>To my surprise, he was right! The legacy flow in question had been decoupled during the past month by a member from his team.</p>
+<h2 id="wait-im-still-not-seeing-the-problem"><a class="header" href="#wait-im-still-not-seeing-the-problem">Wait I'm still not seeing the problem...</a></h2>
+<p>So what's the issue? This is a net positive right?</p>
+<p>Correct.</p>
+<p>Yet here's the thing: our ICs who maintained the consuming service had never seen a pull-request or a Slack notification of this change.</p>
+<p>Naively, I mentioned this in said thread. And the paraphrased answer received in turn was <code>We had recently chatted about this change multiple times</code>.
+Interesting... so this wasn't a breakdown of responsibility from the team applying the change, but a breakdown of communication internal to our very team.</p>
+<p>Our sister team had done their due-dilligence yet we failed to keep everyone informed of this.</p>
+<h2 id="how-did-we-get-here"><a class="header" href="#how-did-we-get-here">How did we get here?</a></h2>
+<p>The team I operate on is currently composed of roughly 8 engineers split across largely two work streams.
+These two works streams are then divided into a plethora of smaller feature sets.</p>
+<p>The feasibility of the feature sets are individually investigated by different team members in order to derisk, plan timelines, break down vertical slices of work, etc.
+When it comes to communicating with other teams that maintain upstream domains we consume data from, it is not expected that the entire team gets pulled in for a conversation.</p>
+<h3 id="pros-of-the-above"><a class="header" href="#pros-of-the-above">Pros of the above:</a></h3>
+<ul>
+<li>Folks can dive deep and discover the edges of a domain.</li>
+<li>It favorizes autonomy in discovery.</li>
+<li>It permits individual networking with stakeholders and external colleagues.</li>
+</ul>
+<h3 id="cons-of-this-way-of-working"><a class="header" href="#cons-of-this-way-of-working">Cons of this way of working:</a></h3>
+<ul>
+<li>There is an expectation that individuals report all information back to the team (async).</li>
+<li>The mental models in peoples heads may start to skew.</li>
+<li>Not everybody is up to date with the current state of the world and what needs to be prioritized.</li>
+</ul>
+<p>That last bullet point is the most harmful one in my opinion.</p>
+<h2 id="example-scenario"><a class="header" href="#example-scenario">Example scenario</a></h2>
+<ul>
+<li>5 regular ICs are expected to maintain a single service.</li>
+<li>2 Staff+ engineers are off having higher level conversations with stakeholders.</li>
+<li>A manager or two are acting as the glue between all these people.</li>
+</ul>
+<p>The difficulty of this resource allocation is the amount of conversations that need to occur to keep everybody in the loop.</p>
+<pre class="mermaid">flowchart
+    A
+    A&lt;--&gt;B
+    A&lt;--&gt;C
+    A&lt;--&gt;D
+    A&lt;--&gt;E
+    A&lt;--&gt;F
+    A&lt;--&gt;G
+    A&lt;--&gt;H
+
+    B
+    B&lt;--&gt;C
+    B&lt;--&gt;D
+    B&lt;--&gt;E
+    B&lt;--&gt;F
+    B&lt;--&gt;G
+    B&lt;--&gt;H
+
+    C
+    C&lt;--&gt;D
+    C&lt;--&gt;E
+    C&lt;--&gt;F
+    C&lt;--&gt;G
+    C&lt;--&gt;H
+
+    D
+    D&lt;--&gt;E
+    D&lt;--&gt;F
+    D&lt;--&gt;G
+    D&lt;--&gt;H
+
+    E
+    E&lt;--&gt;F
+    E&lt;--&gt;G
+    E&lt;--&gt;H
+
+    F
+    F&lt;--&gt;G
+    F&lt;--&gt;H
+
+    G
+    G&lt;--&gt;H
+</pre>
+<p>Every individual becomes a node in a fully connected graph with 7 edges where conversation can flow.
+Not all these links are necessarily operating at the same frequency due to personal preferences for relationships or collaboration.
+Nonetheless, that is a LOT of room for error. There's no way to prove that the conversation held between <code>A</code> and <code>G</code> produced the same understanding
+or mental model as the discussion between <code>C</code> and <code>F</code>.</p>
+<p>The second you add in conversation from a stakeholder or dependency as an additional edge external to this graph, that information gets warped.</p>
+<p>This is where <code>Velocity</code> gets impacted. To reach a common understanding, meetings to get everybody aligned quadruple and design documents become more verbose.</p>
+<h2 id="other-impacts-on-velocity"><a class="header" href="#other-impacts-on-velocity">Other impacts on velocity</a></h2>
+<p>Safe to say, conversation becomes messy. By proxy though, work splitting gets even messier when there is overlap of people working on slightly different yet coupled logic.</p>
+<ul>
+<li>PRs take longer to review to account for individual mental models.</li>
+<li>Code conflicts waste development time.</li>
+<li>Inconsequential details are scrutinized by more people, making it longer to ship larger chunks of work (does the length of your variable name matter to the business?).</li>
+</ul>
+<h2 id="too-many-cooks-in-the-kitchen"><a class="header" href="#too-many-cooks-in-the-kitchen">Too many cooks in the kitchen?</a></h2>
+<p>Most likely. My observation when cross-comparing with prior workplace experiences is that reducing <code>Allocation</code> of engineers on a project to 2-3 contributors
+can produce a healthier understanding of the world and a more involved workforce.</p>
+<ul>
+<li>They are better positioned to communicate any domain changes externally.</li>
+<li>They are better suited to collaborate and move in a unified direction.</li>
+<li>They are easier to manage.</li>
+<li>They get changes out quicker.</li>
+<li>They spend less time in meetings to sync.</li>
+<li>They create a less <code>fractured</code> internal ecosystem.</li>
+</ul>
+<h2 id="of-course-there-must-be-downsides"><a class="header" href="#of-course-there-must-be-downsides">Of course there must be downsides</a></h2>
+<p>Yea, maybe on-call rotations become tighter. Team members leaving to seek other opportunities have a larger impact.
+Vacations and PTO have a similar effect yet in the short term.</p>
+<p>Guess there's maybe no perfect solution?</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../2024-09-12/2024-09-12.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../blog.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../2024-05-18/2024-05-18.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../2024-09-13/2024-09-13.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -189,11 +294,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../2024-09-12/2024-09-12.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../blog.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../2024-05-18/2024-05-18.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../2024-09-13/2024-09-13.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
