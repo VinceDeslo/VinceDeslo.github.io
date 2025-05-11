@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="navy sidebar-visible" dir="ltr">
+<html lang="en" class="custom sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -23,17 +23,19 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../theme/custom.css">
 
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+            const path_to_root = "../";
+            const default_light_theme = "custom";
+            const default_dark_theme = "custom";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc.js"></script>
@@ -43,8 +45,8 @@
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -58,11 +60,12 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
-            html.classList.remove('navy')
+            html.classList.remove('custom')
             html.classList.add(theme);
             html.classList.add("js");
         </script>
@@ -71,8 +74,8 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -104,10 +107,8 @@
                         <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
                         </label>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
-                        </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -124,6 +125,9 @@
                     <div class="right-buttons">
                         <a href="https://github.com/VinceDeslo" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/vincent-desloover/" title="LinkedIN" aria-label="LinkedIN page">
+                            <i id="linkedin-button" class="fa fa-linkedin"></i>
                         </a>
 
                     </div>
@@ -156,7 +160,7 @@
 <p>While calmly watching a movie on a Wednesday evening, Pagerduty starts yelling at me through the cheap speakers in my phone.
 Time to strap in and figure out what is causing chaos!</p>
 <h2 id="what-was-happening"><a class="header" href="#what-was-happening">What was happening?</a></h2>
-<p>Effectively, a specific feature<sup class="footnote-reference"><a href="#note">1</a></sup> that my team had inherited was being flagged by a notable customer as lacking some security precautions for distribution of static assets.</p>
+<p>Effectively, a specific feature<sup class="footnote-reference" id="fr-note-1"><a href="#footnote-note">1</a></sup> that my team had inherited was being flagged by a notable customer as lacking some security precautions for distribution of static assets.</p>
 <h2 id="whats-so-special"><a class="header" href="#whats-so-special">What's so special?</a></h2>
 <p>This just sounds like business as usual, right? Unfortunately, incident response lasted into the night longer than expected. The culprit being lack of knowledge.</p>
 <p>Lack of knowledge on my behalf? <code>Yes.</code><br />
@@ -197,10 +201,11 @@ Although very intelligently built, it did not fit the mold of how our engineers 
 <p>As owners of the codebase, we had very little visibility into the impact of the product. Metrics were minimal since it had been built quickly to respond to short term needs. How many customers used it? What was the ballpark of the generated profit? How much scale could it handle? All of these are questions which should be answered in a split second. Nobody could answer them at the time. Maybe tacking an OTel metric or two onto the key flows could have given a great deal of insight via a dashboard.</p>
 <h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
 <p>Although messy, this was a fun time. I got to play around with some serverless pipelines and a couple of AWS services that I don't get to use in my day to day. Sometimes, even chaotic moments can bring in a breath of fresh air!</p>
-<div class="footnote-definition" id="note"><sup class="footnote-definition-label">1</sup>
-<p>Implementation details and any names of services/features were omitted for security and confidentiality reasons. The operational lessons feel more valuable to me in this case than the technical details.</p>
-</div>
-
+<hr>
+<ol class="footnote-definition"><li id="footnote-note">
+<p>Implementation details and any names of services/features were omitted for security and confidentiality reasons. The operational lessons feel more valuable to me in this case than the technical details. <a href="#fr-note-1">↩</a></p>
+</li>
+</ol>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
