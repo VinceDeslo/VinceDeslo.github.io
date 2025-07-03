@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>2025/05/31 - Finally some usage - Slowtime Personas</title>
+        <title>2025/07/03 - Three years - Slowtime Personas</title>
 
 
         <!-- Custom HTML head -->
@@ -222,64 +222,81 @@
 }
 
 </style>
-<h1 id="20250531---finally-some-usage"><a class="header" href="#20250531---finally-some-usage">2025/05/31 - Finally some usage</a></h1>
-<div class="mdbook-alerts mdbook-alerts-note">
-<p class="mdbook-alerts-title">
-  <span class="mdbook-alerts-icon"></span>
-  note
-</p>
-<p>This will be an AI focused post. If you are also plagued by hype fatigue, I empathize.</p>
-</div>
-<h2 id="tldr"><a class="header" href="#tldr">TLDR;</a></h2>
-<p>I've finally started integrating AI solutions into my workflow. Kinda good? Slowly adapting, but adapting nonetheless.</p>
-<h2 id="context"><a class="header" href="#context">Context</a></h2>
-<p>Now that more and more enterprises are starting to integrate generative and agentic tooling into their products and operations,
-my workplace has begun incentivizing the use of newer tools and models for every day development work. The general idea being that
-if we want to secure these workloads and remain competitive in today's market, our people need to be knowledgeable regarding patterns, usage, and risks.</p>
-<h2 id="okay-thats-nice-and"><a class="header" href="#okay-thats-nice-and">Okay, that's nice, and?</a></h2>
-<p>Being too cheap to dish out the cash for more monthly subscriptions, this means I finally have gotten access to play around with some tooling outside of free tiers.
-Although I had already replaced my Stack Overflow searches and Google visits with Claude Desktop and ChatGPT, this meant I suddenly had access to some
-API keys for my own integration pleasures.</p>
-<h2 id="the-tech"><a class="header" href="#the-tech">The Tech</a></h2>
-<p>Here's generally what my AI stack has morphed into during the past couple of months:</p>
-<ul>
-<li>Gemini 2.5 Pro</li>
-<li>Claude 3.7 Sonnet</li>
-<li><a href="https://codecompanion.olimorris.dev/">CodeCompanion.nvim</a></li>
-<li><a href="https://github.com/sigoden/aichat">sigoden/aichat</a></li>
-<li><a href="https://windsurf.com/">Windsurf</a></li>
-<li><a href="https://v0.dev/">Vercel V0</a> (rarely for mocking product experiences)</li>
-</ul>
-<h2 id="whats-the-setup"><a class="header" href="#whats-the-setup">What's the setup?</a></h2>
-<p>In most development work, <code>CodeCompanion</code> is my goto. Having it configured in Neovim without any inline completion, yet the <code>:CodeCompanionChat</code> command
-giving me instant access to an LLM chat window with codebase context has been great. This is currently hooked up to Gemini (which is unfortunately a bit verbose in its answers)
-and speeds up my workflow by reducing the amount of browser navigation I require.</p>
-<p>The other nice improvement is frequent usage of <code>sigoden/aichat</code> directly from the CLI with an API key.
-My pattern tends to be:</p>
-<pre><code class="language-bash">aichat "..., be brief" | glow
+<h1 id="20250703---three-years"><a class="header" href="#20250703---three-years">2025/07/03 - Three years</a></h1>
+<p>The start of summer has marked my three years of working in the world of DevSecOps. I thought this would be as best a time as any to do a bit of reminiscing on my time in this sector.</p>
+<h2 id="the-journey-so-far"><a class="header" href="#the-journey-so-far">The journey so far</a></h2>
+<p>Here's a rough overview of the eras and how this adventure has progressed so far:</p>
+<p><code>Bright eyed and bushy tailed</code></p>
+<p>Join a monetization team. Full steam ahead on monolith decomposition. All the billing APIs. Ugh Salesforce.</p>
+<p><code>Oh no layoffs</code></p>
+<p>Bye-bye mentors, guess I need to be some form of authority now? New team, new name, new friends, new funnels.</p>
+<p><code>Hey, platform is over there</code></p>
+<p>Notice where the cool things are happening and where the skilled people are operating. EDA and OAuth sounds like more fun. Lets go be a platform engineer!</p>
+<p><code>Leveling up</code></p>
+<p>Wow some of these people are damn efficient, gotta get up to par.</p>
+<p><code>Company says no</code></p>
+<p>Re-org because priorities change. Projects shelved, new division, new mission, a patchwork team. Developer Experience is our god now.</p>
+<p><code>Greenfield</code></p>
+<p>Guess I'm working on source control integrations? New service, all the Kafka, data pipelines. Build our little wonderland, wait how am I a mentor now?</p>
+<p><code>EA, GA ... AI?</code></p>
+<p>Hype cycles drive the market. Call the MVP prod ready, the great AI rebrand is upon us. Debt creeps, bottlenecks show themselves at scale.</p>
+<p><code>Polish and strip</code></p>
+<p>Investigations, new ideas, team comes together, analytics, enhancements, challenges! Oh wait, new layoffs? Lost mentees.</p>
+<p><code>What now?</code></p>
+<h3 id="a-little-summary"><a class="header" href="#a-little-summary">A little summary</a></h3>
+<pre><code class="language-yaml"># Configure statistics up to date
+{{ if .Values.stats.enabled }}
+stats:
+  teams: 4
+  divisions: 3
+  managers: 5
+  reOrgs: 3
+  promotions: 2
+  contextSwitches: "a lot"
+{{ end }}
 </code></pre>
-<p>This gives me a pleasant little genie in a bottle that doesn't mess around and answers me in short rendered markown blurbs.
-Although a simple approach, this has replaced a fair bit of my documentation lookups while in deeper focus.</p>
-<h2 id="the-newest-addition"><a class="header" href="#the-newest-addition">The newest addition</a></h2>
-<p>I've started warming up a bit to <code>Windsurf</code> and the agentic Cascade mode that comes baked into this VSCode clone. Having to run some form of vim emulation
-to get my motions to work drives me insane, yet using the editor for the occasional exploratory refactor has been useful.</p>
-<p>I recently enjoyed fleshing out a Slack notification testing endpoint with it and was impressed to see that the agent managed to grasp existing patterns
-and slotted the implementation neatly with a rather decent OpenAPI spec and backend handlers/logic. Some of the glue was messy, yet it didn't hallucinate
-any dependencies or data layer invocations.</p>
-<h2 id="thoughts"><a class="header" href="#thoughts">Thoughts</a></h2>
-<p>Although I haven't found these tools to be world changing just yet, some of the speedup has been nice.
-Leaving more time for my dumb neurons to think in higher abstractions instead of naming variables (badly).
-Maybe the skill atrophy won't be too harsh.</p>
+<h2 id="the-highlights"><a class="header" href="#the-highlights">The highlights</a></h2>
+<ul>
+<li>Enjoyed working alongside some brilliant folks who made me reconsider how I was approaching problems/solutions and pushed me to get up to speed.</li>
+<li>Had my brain formatted by various managers with unique approaches to handling engineering teams and career progressions (weaponizing Conways Law for the greater good).</li>
+<li>Took a greenfield domain and led it from first commit to GA'd with a highly motivated team.</li>
+<li>Fought the impostor syndrome and started taking the lead more, successfully pushed back against the feature factory habits when critical.</li>
+</ul>
+<h2 id="the-lowlights"><a class="header" href="#the-lowlights">The lowlights</a></h2>
+<ul>
+<li>Definitely wish I could have worked longer with certain people to soak up more of their knowledge. May have missed some growth opportunities there.</li>
+<li>Hyperfocus on trend following causing projects to be identified as "completed" by the business. I've never seen such a wicked amount of debt accrued in such a short time.</li>
+<li>Incidents happen, lots of incidents shouldn't. System instability for velocity is a bad tradeoff and could have been avoided earlier in hindsight.</li>
+</ul>
+<h2 id="the-takeaways"><a class="header" href="#the-takeaways">The takeaways</a></h2>
+<p>Throughout this time, I had the pleasure to pick up a bunch of new skills as well as work with a myriad of interesting people.
+Although being far from an expert in any of the subjects, it has been a joy to become proefficient with both Kubernetes and Kafka.
+Diving deep into these systems and maintaining solutions that leverage them tickled my brain frequently. By proxy of working in this space,
+it has also exposed me to a plethora of other projects (Envoy, External Secrets Operator, ArgoCD, Kyverno, Istio, etc.) all with their own
+approaches and design philosophies. This had the benefit of opening up my horizons quite significantly.</p>
+<p>On a organizational standpoint, I've definitely felt the instability of working in tech.
+Frequent re-orgs, employee churn, not being able to spend more than 6 months in a team or on a project, etc. This led me to realize
+that a fundamental skill is to maintain vision from the bottom up even if the company is unclear as to its own priorities. Defining where
+we want to be in a years time as well as spiking and experimenting should be a strong focus alongside the habitual responsibilities of implementation, maintenance, and support.
+It sometimes feels like folks are a bit overwhelmed with the amount of facets to the industry and we tend to fall into a "Business as usual" mindset without challenging
+the internal status quo. Basically <code>ask for forgiveness instead of permission</code> and constantly push to do better.</p>
+<h2 id="next-steps"><a class="header" href="#next-steps">Next steps</a></h2>
+<p>As I re-evaluate my career trajectory, I think my renewed focus will be on a couple of key aspects:</p>
+<ul>
+<li>Championing observability to sleep better at night.</li>
+<li>Extracting and cleaning more data to ensure success criteria are traceable early in the SDLC.</li>
+<li>Improving local dev setups for better momentum later in projects.</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../2025-07-03/2025-07-03.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../blog.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../2025-01-12/2025-01-12.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../2025-05-31/2025-05-31.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -289,11 +306,11 @@ Maybe the skill atrophy won't be too harsh.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../2025-07-03/2025-07-03.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../blog.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../2025-01-12/2025-01-12.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../2025-05-31/2025-05-31.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
